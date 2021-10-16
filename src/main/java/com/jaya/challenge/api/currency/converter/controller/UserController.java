@@ -32,8 +32,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/v1/register-user", method = RequestMethod.POST, consumes = {
-			MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, produces = {
-					MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody UserRequest userRequest) {
 
 		ModelMapper modelMapper = new ModelMapper();
