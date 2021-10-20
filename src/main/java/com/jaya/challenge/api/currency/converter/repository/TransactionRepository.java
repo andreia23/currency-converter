@@ -13,9 +13,9 @@ import com.jaya.challenge.api.currency.converter.model.entity.User;
  * @author andreia
  *
  */
-public interface TransactionRepository extends JpaRepository<Transaction, Integer>  {
+public interface TransactionRepository extends JpaRepository<Transaction, Long>  {
 	
-	@Query("select t from Transaction t where t.idUser = ?1")
-	List<Transaction> transactionsByUser(Optional<User> user);
+	@Query("select t from Transaction t where t.user = ?1")
+	List<Transaction> transactionsByUser(User user);
 
 }
