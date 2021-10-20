@@ -12,54 +12,63 @@ import javax.persistence.OneToMany;
 
 /**
  * @author andreia
- *
  */
 @Entity
-public class User implements Serializable {
+public class User {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idUser;
-	
-	private String userName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idUser;
 
-	private String userLastName;
-	
-	@OneToMany
-    @JoinColumn(name = "id_user")
-	private List<Transaction> transactions;
+    private String userName;
 
-	/**
-	 * @return the userName
-	 */
-	public String getUserName() {
-		return userName;
-	}
+    private String userLastName;
 
-	/**
-	 * @param userName the userName to set
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    @OneToMany
+    private List<Transaction> transactions;
 
-	/**
-	 * @return the userLastName
-	 */
-	public String getUserLastName() {
-		return userLastName;
-	}
+    public User() {
+    }
 
-	/**
-	 * @param userLastName the userLastName to set
-	 */
-	public void setUserLastName(String userLastName) {
-		this.userLastName = userLastName;
-	}
+    public User(String userName, String userLastName) {
+        this.userName = userName;
+        this.userLastName = userLastName;
+    }
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+
+    /**
+     * @return the userName
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * @param userName the userName to set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    /**
+     * @return the userLastName
+     */
+    public String getUserLastName() {
+        return userLastName;
+    }
+
+    /**
+     * @param userLastName the userLastName to set
+     */
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
 
 }
