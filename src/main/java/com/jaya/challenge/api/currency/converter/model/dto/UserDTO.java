@@ -1,35 +1,38 @@
 package com.jaya.challenge.api.currency.converter.model.dto;
 
+import com.jaya.challenge.api.currency.converter.model.entity.User;
+
 import java.io.Serializable;
 
 /**
  * @author andreia
  *
  */
-public class UserDTO implements Serializable {
+public class UserDTO {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	private Integer idUser;
+	private Long idUser;
 
 	private String userName;
 
 	private String userLastName;
 
+	public UserDTO(User user) {
+		this.idUser =  user.getIdUser();
+		this.userName = user.getUserName();
+		this.userLastName = user.getUserLastName();
+	}
+
 	/**
 	 * @return the idUser
 	 */
-	public Integer getIdUser() {
+	public Long getIdUser() {
 		return idUser;
 	}
 
 	/**
 	 * @param idUser the idUser to set
 	 */
-	public void setIdUser(Integer idUser) {
+	public void setIdUser(Long idUser) {
 		this.idUser = idUser;
 	}
 

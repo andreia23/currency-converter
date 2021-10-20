@@ -1,59 +1,73 @@
 package com.jaya.challenge.api.currency.converter.model.dto;
 
-import java.io.Serializable;
+import com.jaya.challenge.api.currency.converter.model.entity.Transaction;
+import com.jaya.challenge.api.currency.converter.model.request.Currency;
+
 import java.math.BigDecimal;
 import java.time.Instant;
-
-import com.jaya.challenge.api.currency.converter.model.entity.User;
 
 /**
  * @author andreia
  *
  */
-public class TransactionDTO implements Serializable{
+public class TransactionDTO {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private Long idTransaction;
 
-	private User idUser;
+	private Long idUser;
 
-	private String sourceCurrency;
+	private Currency sourceCurrency;
 
 	private BigDecimal sourceValue;
 
-	private String destinationCurrency;
+	private Currency destinationCurrency;
 
-	private double conversionRate;
+	private BigDecimal conversionRate;
 
 	private Instant date = Instant.now();
+
+	public TransactionDTO(Transaction transaction) {
+		this.idTransaction = transaction.getIdTransaction();
+		this.idUser = transaction.getUser().getIdUser();
+		this.sourceCurrency = transaction.getSourceCurrency();
+		this.sourceValue = transaction.getSourceValue();
+		this.destinationCurrency = transaction.getDestinationCurrency();
+		this.conversionRate = transaction.getConversionRate();
+	}
+
+	public Long getIdTransaction() {
+		return idTransaction;
+	}
+
+	public void setIdTransaction(Long idTransaction) {
+		this.idTransaction = idTransaction;
+	}
 
 	/**
 	 * @return the idUser
 	 */
-	public User getIdUser() {
+	public Long getIdUser() {
 		return idUser;
 	}
 
 	/**
 	 * @param idUser the idUser to set
 	 */
-	public void setIdUser(User idUser) {
+	public void setIdUser(Long idUser) {
 		this.idUser = idUser;
 	}
 
 	/**
 	 * @return the sourceCurrency
 	 */
-	public String getSourceCurrency() {
+	public Currency getSourceCurrency() {
 		return sourceCurrency;
 	}
 
 	/**
 	 * @param sourceCurrency the sourceCurrency to set
 	 */
-	public void setSourceCurrency(String sourceCurrency) {
+	public void setSourceCurrency(Currency sourceCurrency) {
 		this.sourceCurrency = sourceCurrency;
 	}
 
@@ -74,28 +88,28 @@ public class TransactionDTO implements Serializable{
 	/**
 	 * @return the destinationCurrency
 	 */
-	public String getDestinationCurrency() {
+	public Currency getDestinationCurrency() {
 		return destinationCurrency;
 	}
 
 	/**
 	 * @param destinationCurrency the destinationCurrency to set
 	 */
-	public void setDestinationCurrency(String destinationCurrency) {
+	public void setDestinationCurrency(Currency destinationCurrency) {
 		this.destinationCurrency = destinationCurrency;
 	}
 
 	/**
 	 * @return the conversionRate
 	 */
-	public double getConversionRate() {
+	public BigDecimal getConversionRate() {
 		return conversionRate;
 	}
 
 	/**
 	 * @param conversionRate the conversionRate to set
 	 */
-	public void setConversionRate(double conversionRate) {
+	public void setConversionRate(BigDecimal conversionRate) {
 		this.conversionRate = conversionRate;
 	}
 

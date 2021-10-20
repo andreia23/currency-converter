@@ -1,102 +1,70 @@
 package com.jaya.challenge.api.currency.converter.model.dto;
 
-import com.jaya.challenge.api.currency.converter.model.entity.User;
+import com.jaya.challenge.api.currency.converter.model.request.Currency;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
 
 /**
  * @author andreia
- *
  */
-public class ConversionDTO implements Serializable {
+public class ConversionDTO {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private Long idTransaction;
 
-	private Integer idTransaction;
-	
-	private User idUser;
+    private Long idUser;
 
-    private String sourceCurrency;
+    private Currency sourceCurrency;
 
     private BigDecimal sourceValue;
 
-    private String destinationCurrency;
-    
+    private Currency destinationCurrency;
+
     private BigDecimal destinationValue;
 
-    private double conversionRate;
+    private BigDecimal conversionRate;
 
     private Instant date = Instant.now();
 
-	public Integer getIdTransaction() {
-		return idTransaction;
-	}
+    public ConversionDTO(Long idTransaction, Long idUser, Currency sourceCurrency, BigDecimal sourceValue, Currency destinationCurrency, BigDecimal destinationValue, BigDecimal conversionRate) {
+        this.idTransaction = idTransaction;
+        this.idUser = idUser;
+        this.sourceCurrency = sourceCurrency;
+        this.sourceValue = sourceValue;
+        this.destinationCurrency = destinationCurrency;
+        this.destinationValue = destinationValue;
+        this.conversionRate = conversionRate;
+    }
 
-	public void setIdTransaction(Integer idTransaction) {
-		this.idTransaction = idTransaction;
-	}
+    public Long getIdTransaction() {
+        return idTransaction;
+    }
 
-	public User getIdUser() {
-		return idUser;
-	}
+    public Long getIdUser() {
+        return idUser;
+    }
 
-	public void setIdUser(User idUser) {
-		this.idUser = idUser;
-	}
+    public Currency getSourceCurrency() {
+        return sourceCurrency;
+    }
 
-	public String getSourceCurrency() {
-		return sourceCurrency;
-	}
+    public BigDecimal getSourceValue() {
+        return sourceValue;
+    }
 
-	public void setSourceCurrency(String sourceCurrency) {
-		this.sourceCurrency = sourceCurrency;
-	}
+    public Currency getDestinationCurrency() {
+        return destinationCurrency;
+    }
 
-	public BigDecimal getSourceValue() {
-		return sourceValue;
-	}
+    public BigDecimal getDestinationValue() {
+        return destinationValue;
+    }
 
-	public void setSourceValue(BigDecimal sourceValue) {
-		this.sourceValue = sourceValue;
-	}
+    public BigDecimal getConversionRate() {
+        return conversionRate;
+    }
 
-	public String getDestinationCurrency() {
-		return destinationCurrency;
-	}
-
-	public void setDestinationCurrency(String destinationCurrency) {
-		this.destinationCurrency = destinationCurrency;
-	}
-
-	public BigDecimal getDestinationValue() {
-		return destinationValue;
-	}
-
-	public void setDestinationValue(BigDecimal destinationValue) {
-		this.destinationValue = destinationValue;
-	}
-
-	public double getConversionRate() {
-		return conversionRate;
-	}
-
-	public void setConversionRate(double conversionRate) {
-		this.conversionRate = conversionRate;
-	}
-
-	public Instant getDate() {
-		return date;
-	}
-
-	public void setDate(Instant date) {
-		this.date = date;
-	}
-    
-    
-
+    public Instant getDate() {
+        return date;
+    }
 }
