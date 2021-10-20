@@ -1,9 +1,8 @@
 package com.jaya.challenge.api.currency.converter.controller;
 
-import javax.validation.Valid;
-
-import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
+import com.jaya.challenge.api.currency.converter.model.dto.UserDTO;
+import com.jaya.challenge.api.currency.converter.model.request.UserRequest;
+import com.jaya.challenge.api.currency.converter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jaya.challenge.api.currency.converter.model.dto.UserDTO;
-import com.jaya.challenge.api.currency.converter.model.request.UserRequest;
-import com.jaya.challenge.api.currency.converter.service.UserService;
+import javax.validation.Valid;
 
 /**
  * @author andreia
@@ -35,11 +32,7 @@ public class UserController {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody UserRequest userRequest) {
 
-		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-		UserDTO userDTO = modelMapper.map(userRequest, UserDTO.class);
-		userDTO = userService.saveUser(userDTO);
+		UserDTO userDTO = userService.saveUser(userRequest);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
 	}
