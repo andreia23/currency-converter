@@ -10,12 +10,12 @@ public class ErrorDetails {
 
 	private Date timestamp;
 	private String message;
-	private String details;
+	private int status;
 
-	public ErrorDetails(Date timestamp, String message, String details) {
+	public ErrorDetails(Date timestamp, String message, int status) {
 		this.timestamp = timestamp;
 		this.message = message;
-		this.details = details;
+		this.status = status;
 	}
 
 	/**
@@ -46,18 +46,11 @@ public class ErrorDetails {
 		this.message = message;
 	}
 
-	/**
-	 * @return the details
-	 */
-	public String getDetails() {
-		return details;
-	}
+    public int getStatus() {
+        return status;
+    }
 
-	/**
-	 * @param details the details to set
-	 */
-	public void setDetails(String details) {
-		this.details = details;
-	}
-
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }
