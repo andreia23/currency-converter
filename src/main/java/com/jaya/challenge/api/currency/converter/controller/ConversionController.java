@@ -2,6 +2,9 @@ package com.jaya.challenge.api.currency.converter.controller;
 
 import javax.validation.Valid;
 
+import com.jaya.challenge.api.currency.converter.exception.ConverterAPIExceptionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,15 +24,18 @@ public class ConversionController {
 
 	private ConversionService conversionService;
 
+	private Logger logger = LoggerFactory.getLogger(ConversionController.class);
+
 	@Autowired
 	public ConversionController(ConversionService conversionService) {
 		this.conversionService = conversionService;
 	}
 
 	@PostMapping(value = "/v1/currency-converter")
-	public ConversionDTO convertCurrency(@Valid @RequestBody ConversionRequest conversionRequest,
+	public ConversionDTO convertCurrency(@Valid @RequestBody ConversionRequest r,
 			@RequestParam Long idUser) {
-		return conversionService.convertCurrency(idUser, conversionRequest);
+		logger.info("User " + idUser + " converting " + r.getSourceCurrency() + " to " + r.getDestinationCurrency() );
+		return conversionService.convertCurrency(idUser, r);
 
 	}
 
