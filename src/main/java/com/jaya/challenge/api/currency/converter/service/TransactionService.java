@@ -26,7 +26,7 @@ public class TransactionService {
         this.userRepository = userRepository;
     }
 
-    public List<Transaction> findALL() {
+    public List<Transaction> findAll() {
         return transactionRepository.findAll();
     }
 
