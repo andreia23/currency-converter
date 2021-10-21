@@ -1,0 +1,16 @@
+version: "3.5"
+
+services:
+  
+  currency-converter-app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile    
+    image: currency-converter:latest
+    container_name: currency-converter
+    ports:
+      - 9037:9037
+    environment:
+        ACCESS_KEY: "cc1c93359bcca52446be37373d083018"
+
+      
