@@ -2,7 +2,6 @@ package com.jaya.challenge.api.currency.converter.controller;
 
 import javax.validation.Valid;
 
-import com.jaya.challenge.api.currency.converter.exception.ConverterAPIExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,14 @@ import com.jaya.challenge.api.currency.converter.model.dto.ConversionDTO;
 import com.jaya.challenge.api.currency.converter.model.request.ConversionRequest;
 import com.jaya.challenge.api.currency.converter.service.ConversionService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * @author andreia
  *
  */
+@Api(value="Conversion")
 @RestController
 public class ConversionController {
 
@@ -30,7 +33,8 @@ public class ConversionController {
 	public ConversionController(ConversionService conversionService) {
 		this.conversionService = conversionService;
 	}
-
+	
+	@ApiOperation(value = "Conversion between two currencies")
 	@PostMapping(value = "/v1/currency-converter")
 	public ConversionDTO convertCurrency(@Valid @RequestBody ConversionRequest r,
 			@RequestParam Long idUser) {

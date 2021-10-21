@@ -1,25 +1,30 @@
 package com.jaya.challenge.api.currency.converter.controller;
 
-import com.jaya.challenge.api.currency.converter.model.dto.TransactionDTO;
-import com.jaya.challenge.api.currency.converter.model.entity.Transaction;
-import com.jaya.challenge.api.currency.converter.service.TransactionService;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
+import com.jaya.challenge.api.currency.converter.model.dto.TransactionDTO;
+import com.jaya.challenge.api.currency.converter.model.entity.Transaction;
+import com.jaya.challenge.api.currency.converter.service.TransactionService;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * @author andreia
  *
  */
+@Api(value = "Transaction")
 @RestController
 public class TransactionController {
 
@@ -32,7 +37,8 @@ public class TransactionController {
 		this.transactionService = transactionService;
 	}
 
-	@RequestMapping(value = "/v1/all-transactions", method = RequestMethod.GET)
+	@ApiOperation(value = "Get all transactions")
+	@GetMapping(value = "/v1/all-transactions")
 	public ResponseEntity<List<TransactionDTO>> findAll() {
 		logger.info("Listing all transactions");
 		List<TransactionDTO> listDto = new ArrayList<TransactionDTO>();
@@ -44,7 +50,8 @@ public class TransactionController {
 
 	}
 
-	@RequestMapping(value = "/v1/transactions-by-user", method = RequestMethod.GET)
+	@ApiOperation(value = "Get all transactions from a user via id")
+	@GetMapping(value = "/v1/transactions-by-user")
 	public ResponseEntity<List<TransactionDTO>> transactionsByUser(@Valid @RequestParam Long idUser) {
 		logger.info("Searching transactions from user " + idUser);
 		List<TransactionDTO> listDto = new ArrayList<TransactionDTO>();
