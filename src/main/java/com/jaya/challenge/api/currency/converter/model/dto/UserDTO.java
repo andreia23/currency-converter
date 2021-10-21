@@ -2,8 +2,6 @@ package com.jaya.challenge.api.currency.converter.model.dto;
 
 import com.jaya.challenge.api.currency.converter.model.entity.User;
 
-import java.io.Serializable;
-
 /**
  * @author andreia
  *
@@ -17,7 +15,7 @@ public class UserDTO {
 	private String userLastName;
 
 	public UserDTO(User user) {
-		this.idUser =  user.getIdUser();
+		this.idUser = user.getIdUser();
 		this.userName = user.getUserName();
 		this.userLastName = user.getUserLastName();
 	}
@@ -63,7 +61,5 @@ public class UserDTO {
 	public void setUserLastName(String userLastName) {
 		this.userLastName = userLastName;
 	}
-	
-	
 
 }

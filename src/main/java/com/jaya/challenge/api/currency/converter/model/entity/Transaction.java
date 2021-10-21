@@ -1,12 +1,15 @@
 package com.jaya.challenge.api.currency.converter.model.entity;
 
-import com.jaya.challenge.api.currency.converter.model.request.Currency;
-
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.jaya.challenge.api.currency.converter.model.request.Currency;
 
 /**
  * @author andreia
@@ -14,132 +17,132 @@ import javax.persistence.*;
 @Entity
 public class Transaction {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTransaction;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idTransaction;
 
-    @ManyToOne
-    private User user;
+	@ManyToOne
+	private User user;
 
-    private Currency sourceCurrency;
+	private Currency sourceCurrency;
 
-    private BigDecimal sourceValue;
+	private BigDecimal sourceValue;
 
-    private Currency destinationCurrency;
+	private Currency destinationCurrency;
 
-    private BigDecimal conversionRate;
+	private BigDecimal conversionRate;
 
-    private Instant date = Instant.now();
+	private Instant date = Instant.now();
 
-    public Transaction(User user, Currency sourceCurrency, BigDecimal sourceValue, Currency destinationCurrency,
-                       BigDecimal conversionRate) {
+	public Transaction(User user, Currency sourceCurrency, BigDecimal sourceValue, Currency destinationCurrency,
+			BigDecimal conversionRate) {
 
-        this.user = user;
-        this.sourceCurrency = sourceCurrency;
-        this.sourceValue = sourceValue;
-        this.destinationCurrency = destinationCurrency;
-        this.conversionRate = conversionRate;
-    }
+		this.user = user;
+		this.sourceCurrency = sourceCurrency;
+		this.sourceValue = sourceValue;
+		this.destinationCurrency = destinationCurrency;
+		this.conversionRate = conversionRate;
+	}
 
-    public Transaction() {
+	public Transaction() {
 
-    }
+	}
 
-    /**
-     * @return the idTransaction
-     */
-    public Long getIdTransaction() {
-        return idTransaction;
-    }
+	/**
+	 * @return the idTransaction
+	 */
+	public Long getIdTransaction() {
+		return idTransaction;
+	}
 
-    /**
-     * @param idTransaction the idTransaction to set
-     */
-    public void setIdTransaction(Long idTransaction) {
-        this.idTransaction = idTransaction;
-    }
+	/**
+	 * @param idTransaction the idTransaction to set
+	 */
+	public void setIdTransaction(Long idTransaction) {
+		this.idTransaction = idTransaction;
+	}
 
-    /**
-     * @return the idUser
-     */
-    public User getUser() {
-        return user;
-    }
+	/**
+	 * @return the idUser
+	 */
+	public User getUser() {
+		return user;
+	}
 
-    /**
-     * @param idUser the idUser to set
-     */
-    public void setUser(User idUser) {
-        this.user = idUser;
-    }
+	/**
+	 * @param idUser the idUser to set
+	 */
+	public void setUser(User idUser) {
+		this.user = idUser;
+	}
 
-    /**
-     * @return the sourceCurrency
-     */
-    public Currency getSourceCurrency() {
-        return sourceCurrency;
-    }
+	/**
+	 * @return the sourceCurrency
+	 */
+	public Currency getSourceCurrency() {
+		return sourceCurrency;
+	}
 
-    /**
-     * @param sourceCurrency the sourceCurrency to set
-     */
-    public void setSourceCurrency(Currency sourceCurrency) {
-        this.sourceCurrency = sourceCurrency;
-    }
+	/**
+	 * @param sourceCurrency the sourceCurrency to set
+	 */
+	public void setSourceCurrency(Currency sourceCurrency) {
+		this.sourceCurrency = sourceCurrency;
+	}
 
-    /**
-     * @return the sourceValue
-     */
-    public BigDecimal getSourceValue() {
-        return sourceValue;
-    }
+	/**
+	 * @return the sourceValue
+	 */
+	public BigDecimal getSourceValue() {
+		return sourceValue;
+	}
 
-    /**
-     * @param sourceValue the sourceValue to set
-     */
-    public void setSourceValue(BigDecimal sourceValue) {
-        this.sourceValue = sourceValue;
-    }
+	/**
+	 * @param sourceValue the sourceValue to set
+	 */
+	public void setSourceValue(BigDecimal sourceValue) {
+		this.sourceValue = sourceValue;
+	}
 
-    /**
-     * @return the destinationCurrency
-     */
-    public Currency getDestinationCurrency() {
-        return destinationCurrency;
-    }
+	/**
+	 * @return the destinationCurrency
+	 */
+	public Currency getDestinationCurrency() {
+		return destinationCurrency;
+	}
 
-    /**
-     * @param destinationCurrency the destinationCurrency to set
-     */
-    public void setDestinationCurrency(Currency destinationCurrency) {
-        this.destinationCurrency = destinationCurrency;
-    }
+	/**
+	 * @param destinationCurrency the destinationCurrency to set
+	 */
+	public void setDestinationCurrency(Currency destinationCurrency) {
+		this.destinationCurrency = destinationCurrency;
+	}
 
-    /**
-     * @return the conversionRate
-     */
-    public BigDecimal getConversionRate() {
-        return conversionRate;
-    }
+	/**
+	 * @return the conversionRate
+	 */
+	public BigDecimal getConversionRate() {
+		return conversionRate;
+	}
 
-    /**
-     * @param conversionRate the conversionRate to set
-     */
-    public void setConversionRate(BigDecimal conversionRate) {
-        this.conversionRate = conversionRate;
-    }
+	/**
+	 * @param conversionRate the conversionRate to set
+	 */
+	public void setConversionRate(BigDecimal conversionRate) {
+		this.conversionRate = conversionRate;
+	}
 
-    /**
-     * @return the date
-     */
-    public Instant getDate() {
-        return date;
-    }
+	/**
+	 * @return the date
+	 */
+	public Instant getDate() {
+		return date;
+	}
 
-    /**
-     * @param date the date to set
-     */
-    public void setDate(Instant date) {
-        this.date = date;
-    }
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Instant date) {
+		this.date = date;
+	}
 }
