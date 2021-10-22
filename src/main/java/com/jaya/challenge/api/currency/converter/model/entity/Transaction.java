@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.jaya.challenge.api.currency.converter.model.request.Currency;
+import com.jaya.challenge.api.currency.converter.commons.Currency;
 
 /**
  * @author andreia

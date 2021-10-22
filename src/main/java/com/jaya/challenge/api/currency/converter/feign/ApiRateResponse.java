@@ -1,9 +1,9 @@
 package com.jaya.challenge.api.currency.converter.feign;
 
-import com.jaya.challenge.api.currency.converter.model.request.Currency;
-
 import java.math.BigDecimal;
 import java.util.Map;
+
+import com.jaya.challenge.api.currency.converter.commons.Currency;
 
 public class ApiRateResponse {
 
@@ -14,6 +14,7 @@ public class ApiRateResponse {
     public Currency getBase() {
         return base;
     }
+    
 
     public Map<Currency, BigDecimal> getRates() {
         return rates;

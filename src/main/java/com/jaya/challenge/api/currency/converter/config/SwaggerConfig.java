@@ -1,4 +1,4 @@
-package com.jaya.challenge.api.currency.converter;
+package com.jaya.challenge.api.currency.converter.config;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 

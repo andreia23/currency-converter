@@ -1,10 +1,10 @@
 package com.jaya.challenge.api.currency.converter.model.dto;
 
-import com.jaya.challenge.api.currency.converter.model.entity.Transaction;
-import com.jaya.challenge.api.currency.converter.model.request.Currency;
-
 import java.math.BigDecimal;
 import java.time.Instant;
+
+import com.jaya.challenge.api.currency.converter.commons.Currency;
+import com.jaya.challenge.api.currency.converter.model.entity.Transaction;
 
 /**
  * @author andreia

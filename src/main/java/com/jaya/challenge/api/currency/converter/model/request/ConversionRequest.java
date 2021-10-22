@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.NotNull;
 
+import com.jaya.challenge.api.currency.converter.commons.Currency;
+
 /**
  * @author andreia
  */

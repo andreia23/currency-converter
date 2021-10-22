@@ -1,5 +1,14 @@
 package com.jaya.challenge.api.currency.converter.service;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.jaya.challenge.api.currency.converter.commons.Currency;
 import com.jaya.challenge.api.currency.converter.exception.UserNotFoundException;
 import com.jaya.challenge.api.currency.converter.feign.ApiRateResponse;
 import com.jaya.challenge.api.currency.converter.feign.ApiRates;
@@ -7,16 +16,8 @@ import com.jaya.challenge.api.currency.converter.model.dto.ConversionDTO;
 import com.jaya.challenge.api.currency.converter.model.entity.Transaction;
 import com.jaya.challenge.api.currency.converter.model.entity.User;
 import com.jaya.challenge.api.currency.converter.model.request.ConversionRequest;
-import com.jaya.challenge.api.currency.converter.model.request.Currency;
 import com.jaya.challenge.api.currency.converter.repository.TransactionRepository;
 import com.jaya.challenge.api.currency.converter.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 
 /**
  * @author andreia

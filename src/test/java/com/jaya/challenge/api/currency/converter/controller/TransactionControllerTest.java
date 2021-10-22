@@ -1,11 +1,11 @@
 package com.jaya.challenge.api.currency.converter.controller;
 
-import com.jaya.challenge.api.currency.converter.model.entity.User;
-import com.jaya.challenge.api.currency.converter.model.request.ConversionRequest;
-import com.jaya.challenge.api.currency.converter.model.request.Currency;
-import com.jaya.challenge.api.currency.converter.repository.TransactionRepository;
-import com.jaya.challenge.api.currency.converter.repository.UserRepository;
-import com.jaya.challenge.api.currency.converter.service.ConversionService;
+import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.math.BigDecimal;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,13 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.math.BigDecimal;
-
-import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.jaya.challenge.api.currency.converter.commons.Currency;
+import com.jaya.challenge.api.currency.converter.model.entity.User;
+import com.jaya.challenge.api.currency.converter.model.request.ConversionRequest;
+import com.jaya.challenge.api.currency.converter.repository.TransactionRepository;
+import com.jaya.challenge.api.currency.converter.repository.UserRepository;
+import com.jaya.challenge.api.currency.converter.service.ConversionService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -50,7 +51,7 @@ public class TransactionControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-        assertEquals(transactionRepository.transactionsByUser(user).size(), 1);
+        assertEquals(1,transactionRepository.transactionsByUser(user).size());
     }
 
     @Test

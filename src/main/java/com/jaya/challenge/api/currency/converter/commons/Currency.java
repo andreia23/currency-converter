@@ -1,4 +1,4 @@
-package com.jaya.challenge.api.currency.converter.model.request;
+package com.jaya.challenge.api.currency.converter.commons;
 
 /**
  * @author andreia
