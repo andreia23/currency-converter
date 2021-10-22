@@ -56,3 +56,5 @@ Get all transactions: [https://app-currency-convert.herokuapp.com/currency-conve
 Currency Converter has been separated into four layers: `model`, `controller`, `service` and `repository`
 
 Java, Spring Boot, Maven and Docker technologies were chosen because they are highly used in the market and also because they are the ones that the developer has more experience.
+
+The technology used for lint configuration was [SonarLint](https://www.sonarlint.org/)
