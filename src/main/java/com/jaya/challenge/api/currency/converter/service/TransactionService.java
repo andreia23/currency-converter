@@ -33,7 +33,6 @@ public class TransactionService {
     public List<Transaction> transactionsByUser(Long idUser) {
         User user = userRepository.findById(idUser).orElseThrow(
                 () -> new UserNotFoundException("User not found"));
-        ;
         return transactionRepository.transactionsByUser(user);
     }
 

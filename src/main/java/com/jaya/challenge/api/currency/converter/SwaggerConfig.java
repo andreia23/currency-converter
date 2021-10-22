@@ -28,13 +28,11 @@ public class SwaggerConfig {
 
 	private ApiInfo metaInfo() {
 
-		ApiInfo apiInfo = new ApiInfo("Currency Converter",
+		return new ApiInfo("Currency Converter",
 				"REST API that converts between two currencies using updated conversion rates from the external service http://api.exchangeratesapi.io/latest?base=EUR.",
 				"1.0.0", "Terms of Service",
 				new Contact("Andréia Berto", "https://github.com/andreia23/currency-converter",
 						"andreiahdev@gmail.com"),
 				"Apache License Version 2.0", "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>());
-
-		return apiInfo;
 	}
 }

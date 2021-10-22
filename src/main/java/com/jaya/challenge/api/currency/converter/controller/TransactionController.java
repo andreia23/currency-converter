@@ -41,7 +41,7 @@ public class TransactionController {
 	@GetMapping(value = "/v1/all-transactions")
 	public ResponseEntity<List<TransactionDTO>> findAll() {
 		logger.info("Listing all transactions");
-		List<TransactionDTO> listDto = new ArrayList<TransactionDTO>();
+		List<TransactionDTO> listDto = new ArrayList<>();
 		List<Transaction> list = transactionService.findAll();
 		for (Transaction transaction : list) {
 			listDto.add(new TransactionDTO(transaction));
@@ -54,7 +54,7 @@ public class TransactionController {
 	@GetMapping(value = "/v1/transactions-by-user")
 	public ResponseEntity<List<TransactionDTO>> transactionsByUser(@Valid @RequestParam Long idUser) {
 		logger.info("Searching transactions from user " + idUser);
-		List<TransactionDTO> listDto = new ArrayList<TransactionDTO>();
+		List<TransactionDTO> listDto = new ArrayList<>();
 		List<Transaction> list = transactionService.transactionsByUser(idUser);
 		for (Transaction transaction : list) {
 			listDto.add(new TransactionDTO(transaction));

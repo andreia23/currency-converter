@@ -37,7 +37,8 @@ public class ConverterAPIExceptionHandler {
 		for (FieldError error : fieldErrorList) {
 			message.append(messageSource.getMessage(error, LocaleContextHolder.getLocale())).append("; ");
 		}
-		logger.error(message.toString());
+		String messageError = message.toString(); 
+		logger.error(messageError);
 		return new ErrorDetails(new Date(), message.toString(), HttpStatus.BAD_REQUEST.value());
 	}
 
@@ -45,24 +46,21 @@ public class ConverterAPIExceptionHandler {
 	@ExceptionHandler(value = UserNotFoundException.class)
 	public ErrorDetails handleNotFoundException(UserNotFoundException ex) {
 		logger.error(ex.getMessage());
-		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), HttpStatus.NOT_FOUND.value());
-		return errorDetails;
+		return new ErrorDetails(new Date(), ex.getMessage(), HttpStatus.NOT_FOUND.value());
 	}
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(value = CurrencyNotSupportedException.class)
 	public ErrorDetails handleCurrencyNotSupportedException(CurrencyNotSupportedException ex) {
 		logger.error(ex.getMessage());
-		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), HttpStatus.BAD_REQUEST.value());
-		return errorDetails;
+		return new ErrorDetails(new Date(), ex.getMessage(), HttpStatus.BAD_REQUEST.value());
 	}
 
 	@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(value = Exception.class)
 	public ErrorDetails handleGenericException(Exception ex) {
 		logger.error(ex.getMessage());
-		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
+		return new ErrorDetails(new Date(), ex.getMessage(),
 				HttpStatus.INTERNAL_SERVER_ERROR.value());
-		return errorDetails;
 	}
 }

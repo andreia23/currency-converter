@@ -26,7 +26,7 @@ import java.math.RoundingMode;
 public class ConversionService {
 
 	@Value("${feign.apirates.accessKey}")
-	private String access_key;
+	private String accessKey;
 
 	private ApiRates apiRates;
 
@@ -56,7 +56,7 @@ public class ConversionService {
 		Currency destinationCurrency = conversionRequest.getDestinationCurrency();
 		BigDecimal sourceValue = conversionRequest.getSourceValue();
 
-		ApiRateResponse apiRateResponse = apiRates.getRates(access_key);
+		ApiRateResponse apiRateResponse = apiRates.getRates(accessKey);
 
 		BigDecimal rateSourceCurrency = apiRateResponse.getRates().get(sourceCurrency);
 		BigDecimal rateDestinationCurrency = apiRateResponse.getRates().get(destinationCurrency);

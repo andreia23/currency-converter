@@ -72,7 +72,7 @@ public class TransactionControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-        assertEquals(transactionRepository.transactionsByUser(user).size(), 2);
+        assertEquals(2,transactionRepository.transactionsByUser(user).size());
     }
 
 

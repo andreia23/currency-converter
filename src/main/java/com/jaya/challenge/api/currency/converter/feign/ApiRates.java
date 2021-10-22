@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ApiRates {
 
     @GetMapping
-    ApiRateResponse getRates(@RequestParam String access_key);
+    ApiRateResponse getRates(@RequestParam("access_key") String accessKey);
 }
