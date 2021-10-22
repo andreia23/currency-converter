@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "896d9603-bc98-4e21-9a73-2766b0ec24b9",
+		"name": "currency-converter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register-user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\" : \"Andréia\",\n    \"userLastName\" : \"Berto\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9037/currency-converter/v1/register-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9037",
+					"path": [
+						"currency-converter",
+						"v1",
+						"register-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions-by-user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9037/currency-converter/v1/transactions-by-user?idUser=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9037",
+					"path": [
+						"currency-converter",
+						"v1",
+						"transactions-by-user"
+					],
+					"query": [
+						{
+							"key": "idUser",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All-transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9037/currency-converter/v1/all-transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9037",
+					"path": [
+						"currency-converter",
+						"v1",
+						"all-transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Currency-converter",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sourceCurrency\": \"EUR\",\n    \"sourceValue\": \"70\",\n    \"destinationCurrency\":\"JPY\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9037/currency-converter/v1/currency-converter?idUser=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9037",
+					"path": [
+						"currency-converter",
+						"v1",
+						"currency-converter"
+					],
+					"query": [
+						{
+							"key": "idUser",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
