@@ -50,26 +50,34 @@ public class ConversionService {
 	 */
 	public ConversionDTO convertCurrency(Long idUser, ConversionRequest conversionRequest) {
 
-		User user = userRepository.findById(idUser).orElseThrow(
-				() -> new UserNotFoundException("User not found"));
+		User user = userRepository.findById(idUser).orElseThrow(() -> new UserNotFoundException("User not found"));
 
 		Currency sourceCurrency = conversionRequest.getSourceCurrency();
 		Currency destinationCurrency = conversionRequest.getDestinationCurrency();
 		BigDecimal sourceValue = conversionRequest.getSourceValue();
 
 		ApiRateResponse apiRateResponse = apiRates.getRates(accessKey);
-
 		BigDecimal rateSourceCurrency = apiRateResponse.getRates().get(sourceCurrency);
 		BigDecimal rateDestinationCurrency = apiRateResponse.getRates().get(destinationCurrency);
-		BigDecimal finalValue = sourceValue.divide(rateSourceCurrency, 4, RoundingMode.HALF_UP)
-			.multiply(rateDestinationCurrency, new MathContext(4, RoundingMode.HALF_UP));
+		BigDecimal finalValue = calculationToConvert(sourceValue, rateSourceCurrency, rateDestinationCurrency);
 
 		Transaction transaction = new Transaction(user, sourceCurrency, sourceValue, destinationCurrency,
 				rateDestinationCurrency);
 		transaction = transactionRepository.save(transaction);
 
-		return new ConversionDTO(transaction.getIdTransaction(), idUser, sourceCurrency, sourceValue, destinationCurrency, finalValue,
-				rateDestinationCurrency);
+		return new ConversionDTO(transaction.getIdTransaction(), idUser, sourceCurrency, sourceValue,
+				destinationCurrency, finalValue, rateDestinationCurrency);
+	}
+
+	/**
+	 * @param sourceValue
+	 * @param rateSourceCurrency
+	 * @param rateDestinationCurrency
+	 * @return
+	 */
+	public BigDecimal calculationToConvert(BigDecimal sourceValue, BigDecimal rateSourceCurrency,
+			BigDecimal rateDestinationCurrency) {
+		return sourceValue.divide(rateSourceCurrency, 4, RoundingMode.HALF_UP).multiply(rateDestinationCurrency,
+				new MathContext(4, RoundingMode.HALF_UP));
 	}
 }
-

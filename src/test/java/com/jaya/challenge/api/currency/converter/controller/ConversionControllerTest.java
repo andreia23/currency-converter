@@ -27,69 +27,64 @@ import com.jaya.challenge.api.currency.converter.repository.TransactionRepositor
 import com.jaya.challenge.api.currency.converter.repository.UserRepository;
 import com.jaya.challenge.api.currency.converter.service.ConversionService;
 
+/**
+ * @author andreia
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class ConversionControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+	@Autowired
+	private MockMvc mockMvc;
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @Autowired
-    private ConversionService conversionService;
+	@Autowired
+	private ConversionService conversionService;
 
-    @Autowired
-    private TransactionRepository transactionRepository;
+	@Autowired
+	private TransactionRepository transactionRepository;
 
-    @Test
-    public void mustConvertBRLToJPY() throws Exception {
-        User user = userRepository.save(new User("teste1", "teste1"));
-        ConversionRequest conversionRequest = new ConversionRequest(Currency.BRL, new BigDecimal(80), Currency.JPY);
-        mockMvc.perform(MockMvcRequestBuilders.post("/v1/currency-converter")
-                .param("idUser", user.getIdUser().toString())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(conversionRequest))
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
+	@Test
+	public void mustConvertBRLToJPY() throws Exception {
+		User user = userRepository.save(new User("teste1", "teste1"));
+		ConversionRequest conversionRequest = new ConversionRequest(Currency.BRL, new BigDecimal(80), Currency.JPY);
+		mockMvc.perform(MockMvcRequestBuilders.post("/v1/currency-converter")
+				.param("idUser", user.getIdUser().toString()).contentType(MediaType.APPLICATION_JSON)
+				.content(new ObjectMapper().writeValueAsString(conversionRequest)).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+	}
 
-    @Test
-    public void shouldNotConvertCurrencyUnregisteredUser() throws Exception {
-        ConversionRequest conversionRequest = new ConversionRequest(Currency.BRL, new BigDecimal(80), Currency.JPY);
-        mockMvc.perform(MockMvcRequestBuilders.post("/v1/currency-converter")
-                .param("idUser", "2")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(conversionRequest))
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message").value("User not found"));
+	@Test
+	public void shouldNotConvertCurrencyUnregisteredUser() throws Exception {
+		ConversionRequest conversionRequest = new ConversionRequest(Currency.BRL, new BigDecimal(80), Currency.JPY);
+		mockMvc.perform(MockMvcRequestBuilders.post("/v1/currency-converter").param("idUser", "2")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(new ObjectMapper().writeValueAsString(conversionRequest)).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound()).andExpect(jsonPath("$.message").value("User not found"));
 
-    }
+	}
 
-    @Test
-    public void mustConvertUSDToEUR() throws Exception {
-        User user = userRepository.save(new User("teste2","teste2"));
-        ConversionRequest conversionRequest = new ConversionRequest(Currency.USD, new BigDecimal(80), Currency.EUR);
-        ConversionDTO conversionDTO = conversionService.convertCurrency(user.getIdUser(), conversionRequest);
-        mockMvc.perform(MockMvcRequestBuilders.post("/v1/currency-converter")
-                .param("idUser",user.getIdUser().toString())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(conversionRequest))
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.idUser").value(conversionDTO.getIdUser()))
-                .andExpect(jsonPath("$.sourceCurrency").value(conversionDTO.getSourceCurrency().toString()))
-                .andExpect(jsonPath("$.sourceValue").value(conversionDTO.getSourceValue()))
-                .andExpect(jsonPath("$.destinationCurrency").value(conversionDTO.getDestinationCurrency().toString()))
-                .andExpect(jsonPath("$.destinationValue").value(conversionDTO.getDestinationValue()))
-                .andExpect(jsonPath("$.conversionRate").value(conversionDTO.getConversionRate()));
-        assertTrue(userRepository.existsById(1L));
-        assertEquals(2,transactionRepository.transactionsByUser(user).size());
-    }
-
+	@Test
+	public void mustConvertUSDToEUR() throws Exception {
+		User user = userRepository.save(new User("teste2", "teste2"));
+		ConversionRequest conversionRequest = new ConversionRequest(Currency.USD, new BigDecimal(80), Currency.EUR);
+		ConversionDTO conversionDTO = conversionService.convertCurrency(user.getIdUser(), conversionRequest);
+		mockMvc.perform(MockMvcRequestBuilders.post("/v1/currency-converter")
+				.param("idUser", user.getIdUser().toString()).contentType(MediaType.APPLICATION_JSON)
+				.content(new ObjectMapper().writeValueAsString(conversionRequest)).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(jsonPath("$.idUser").value(conversionDTO.getIdUser()))
+				.andExpect(jsonPath("$.sourceCurrency").value(conversionDTO.getSourceCurrency().toString()))
+				.andExpect(jsonPath("$.sourceValue").value(conversionDTO.getSourceValue()))
+				.andExpect(jsonPath("$.destinationCurrency").value(conversionDTO.getDestinationCurrency().toString()))
+				.andExpect(jsonPath("$.destinationValue").value(conversionDTO.getDestinationValue()))
+				.andExpect(jsonPath("$.conversionRate").value(conversionDTO.getConversionRate()));
+		assertTrue(userRepository.existsById(1L));
+		assertEquals(2, transactionRepository.transactionsByUser(user).size());
+	}
 
 }

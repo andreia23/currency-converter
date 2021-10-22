@@ -4,9 +4,13 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name="ApiRates",url = "${feign.apirates.url}")
+/**
+ * @author andreia
+ *
+ */
+@FeignClient(name = "ApiRates", url = "${feign.apirates.url}")
 public interface ApiRates {
 
-    @GetMapping
-    ApiRateResponse getRates(@RequestParam("access_key") String accessKey);
+	@GetMapping
+	ApiRateResponse getRates(@RequestParam("access_key") String accessKey);
 }

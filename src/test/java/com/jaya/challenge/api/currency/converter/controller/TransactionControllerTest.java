@@ -24,57 +24,57 @@ import com.jaya.challenge.api.currency.converter.repository.TransactionRepositor
 import com.jaya.challenge.api.currency.converter.repository.UserRepository;
 import com.jaya.challenge.api.currency.converter.service.ConversionService;
 
+/**
+ * @author andreia
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class TransactionControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+	@Autowired
+	private MockMvc mockMvc;
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @Autowired
-    private ConversionService conversionService;
+	@Autowired
+	private ConversionService conversionService;
 
-    @Autowired
-    private TransactionRepository transactionRepository;
+	@Autowired
+	private TransactionRepository transactionRepository;
 
-    @Test
-    public void mustTransactionsByUser() throws Exception {
-        User user = userRepository.save(new User("teste1", "teste1"));
-        conversionService.convertCurrency(user.getIdUser(), new ConversionRequest(Currency.JPY, new BigDecimal(40), Currency.USD));
-        mockMvc.perform(MockMvcRequestBuilders.get("/v1/transactions-by-user")
-                .param("idUser", user.getIdUser().toString())
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-        assertEquals(1,transactionRepository.transactionsByUser(user).size());
-    }
+	@Test
+	public void mustTransactionsByUser() throws Exception {
+		User user = userRepository.save(new User("teste1", "teste1"));
+		conversionService.convertCurrency(user.getIdUser(),
+				new ConversionRequest(Currency.JPY, new BigDecimal(40), Currency.USD));
+		mockMvc.perform(
+				MockMvcRequestBuilders.get("/v1/transactions-by-user").param("idUser", user.getIdUser().toString())
+						.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+		assertEquals(1, transactionRepository.transactionsByUser(user).size());
+	}
 
-    @Test
-    public void mustNotFindTransactionsByUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/v1/transactions-by-user")
-                .param("idUser", "2")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message").value("User not found"));
-    }
+	@Test
+	public void mustNotFindTransactionsByUser() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/v1/transactions-by-user").param("idUser", "2")
+				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound()).andExpect(jsonPath("$.message").value("User not found"));
+	}
 
-    @Test
-    public void mustFindALL() throws Exception {
-        User user = userRepository.save(new User("teste1", "teste1"));
-        conversionService.convertCurrency(user.getIdUser(), new ConversionRequest(Currency.JPY, new BigDecimal(40), Currency.USD));
-        conversionService.convertCurrency(user.getIdUser(), new ConversionRequest(Currency.BRL, new BigDecimal(40), Currency.EUR));
-        mockMvc.perform(MockMvcRequestBuilders.get("/v1/all-transactions")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-        assertEquals(2,transactionRepository.transactionsByUser(user).size());
-    }
-
+	@Test
+	public void mustFindALL() throws Exception {
+		User user = userRepository.save(new User("teste1", "teste1"));
+		conversionService.convertCurrency(user.getIdUser(),
+				new ConversionRequest(Currency.JPY, new BigDecimal(40), Currency.USD));
+		conversionService.convertCurrency(user.getIdUser(),
+				new ConversionRequest(Currency.BRL, new BigDecimal(40), Currency.EUR));
+		mockMvc.perform(MockMvcRequestBuilders.get("/v1/all-transactions").contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+		assertEquals(2, transactionRepository.transactionsByUser(user).size());
+	}
 
 }

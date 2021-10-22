@@ -37,7 +37,7 @@ public class ConverterAPIExceptionHandler {
 		for (FieldError error : fieldErrorList) {
 			message.append(messageSource.getMessage(error, LocaleContextHolder.getLocale())).append("; ");
 		}
-		String messageError = message.toString(); 
+		String messageError = message.toString();
 		logger.error(messageError);
 		return new ErrorDetails(new Date(), message.toString(), HttpStatus.BAD_REQUEST.value());
 	}
@@ -60,7 +60,6 @@ public class ConverterAPIExceptionHandler {
 	@ExceptionHandler(value = Exception.class)
 	public ErrorDetails handleGenericException(Exception ex) {
 		logger.error(ex.getMessage());
-		return new ErrorDetails(new Date(), ex.getMessage(),
-				HttpStatus.INTERNAL_SERVER_ERROR.value());
+		return new ErrorDetails(new Date(), ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
 	}
 }

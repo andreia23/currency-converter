@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
  * @author andreia
  *
  */
-@Api(value="Conversion")
+@Api(value = "Conversion")
 @RestController
 public class ConversionController {
 
@@ -33,12 +33,11 @@ public class ConversionController {
 	public ConversionController(ConversionService conversionService) {
 		this.conversionService = conversionService;
 	}
-	
+
 	@ApiOperation(value = "Conversion between two currencies")
 	@PostMapping(value = "/v1/currency-converter")
-	public ConversionDTO convertCurrency(@Valid @RequestBody ConversionRequest r,
-			@RequestParam Long idUser) {
-		logger.info("User " + idUser + " converting " + r.getSourceCurrency() + " to " + r.getDestinationCurrency() );
+	public ConversionDTO convertCurrency(@Valid @RequestBody ConversionRequest r, @RequestParam Long idUser) {
+		logger.info("User " + idUser + " converting " + r.getSourceCurrency() + " to " + r.getDestinationCurrency());
 		return conversionService.convertCurrency(idUser, r);
 
 	}

@@ -5,18 +5,21 @@ import java.util.Map;
 
 import com.jaya.challenge.api.currency.converter.commons.Currency;
 
+/**
+ * @author andreia
+ *
+ */
 public class ApiRateResponse {
 
-    private Currency base;
+	private Currency base;
 
-    private Map<Currency, BigDecimal> rates;
+	private Map<Currency, BigDecimal> rates;
 
-    public Currency getBase() {
-        return base;
-    }
-    
+	public Currency getBase() {
+		return base;
+	}
 
-    public Map<Currency, BigDecimal> getRates() {
-        return rates;
-    }
+	public Map<Currency, BigDecimal> getRates() {
+		return rates;
+	}
 }

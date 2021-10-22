@@ -14,18 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
+	private UserRepository userRepository;
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+	@Autowired
+	public UserService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
-    @Transactional
-    public UserDTO saveUser(UserRequest userRequest) {
-        User userEntity = userRequest.toModel();
-        userEntity = userRepository.save(userEntity);
-        return new UserDTO(userEntity);
-    }
+	@Transactional
+	public UserDTO saveUser(UserRequest userRequest) {
+		User userEntity = userRequest.toModel();
+		userEntity = userRepository.save(userEntity);
+		return new UserDTO(userEntity);
+	}
 
 }

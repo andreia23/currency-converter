@@ -14,9 +14,8 @@ import com.jaya.challenge.api.currency.converter.model.entity.User;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-	
+
 	@Query("select u from User u where u.idUser = ?1")
 	Optional<User> findById(Long idUser);
-
 
 }

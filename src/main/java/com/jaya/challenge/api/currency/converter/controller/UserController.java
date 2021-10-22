@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
  * @author andreia
  *
  */
-@Api(value="User")
+@Api(value = "User")
 @RestController
 public class UserController {
 
@@ -34,6 +34,7 @@ public class UserController {
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
+
 	@ApiOperation(value = "Register a user with first name and last name")
 	@PostMapping(value = "/v1/register-user")
 	public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody UserRequest userRequest) {

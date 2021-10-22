@@ -16,24 +16,23 @@ import java.util.List;
 @Service
 public class TransactionService {
 
-    private TransactionRepository transactionRepository;
+	private TransactionRepository transactionRepository;
 
-    private UserRepository userRepository;
+	private UserRepository userRepository;
 
-    @Autowired
-    public TransactionService(TransactionRepository transactionRepository, UserRepository userRepository) {
-        this.transactionRepository = transactionRepository;
-        this.userRepository = userRepository;
-    }
+	@Autowired
+	public TransactionService(TransactionRepository transactionRepository, UserRepository userRepository) {
+		this.transactionRepository = transactionRepository;
+		this.userRepository = userRepository;
+	}
 
-    public List<Transaction> findAll() {
-        return transactionRepository.findAll();
-    }
+	public List<Transaction> findAll() {
+		return transactionRepository.findAll();
+	}
 
-    public List<Transaction> transactionsByUser(Long idUser) {
-        User user = userRepository.findById(idUser).orElseThrow(
-                () -> new UserNotFoundException("User not found"));
-        return transactionRepository.transactionsByUser(user);
-    }
+	public List<Transaction> transactionsByUser(Long idUser) {
+		User user = userRepository.findById(idUser).orElseThrow(() -> new UserNotFoundException("User not found"));
+		return transactionRepository.transactionsByUser(user);
+	}
 
 }
